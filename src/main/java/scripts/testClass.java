@@ -1,23 +1,15 @@
 package scripts;
 
+import common.MWCommon;
+
 import java.io.IOException;
 
 public class testClass {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
-        /*
-        String path = "/Users/sritaj/Downloads/LearnAtUdemy/SeleniumPOC/src/main/browsers-dependency/chromedriver";
-        System.setProperty("webdriver.chrome.driver", path);
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://accqa.aurigoessentials.com/");
-         */
-
-       // System.out.println(PropertiesFile.readProperties("fundAgency"));
-
-
-
-        //driver.get("www.google.com");
-
+        MWCommon.loginMethod();
+        MWCommon.navigateToBudgetTemplate("https://accqa.aurigoessentials.com/Default.aspx#/Common/BrixListPage.aspx?xcontext=BDGTEMP&module=LIBRARY&PID=0&parentid=0");
+        MWCommon.navigateToItems();
     }
 }

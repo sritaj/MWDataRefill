@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 
-public class LibraryDataLoadForProject {
+public class LibraryDataLoadMisc {
 
     @BeforeAll
     static void setup(){
@@ -21,21 +21,22 @@ public class LibraryDataLoadForProject {
         Thread.sleep(5000);
     }
 
+
     @Test
     @Order(1)
-    void loadDataInProjectPhase() throws InterruptedException, IOException {
+    void loadDataInMaterials() throws InterruptedException, IOException {
 
         //Reading the key from config.properties file to get the form specific url
-        String projectPhaseURL = PropertiesFile.readProperties("projectPhaseURL");
+        String materialsURL = PropertiesFile.readProperties("materialsURL");
 
         //appending the build/env specific URL with the form URL
-        String completeFormURL = Constant.buildURL+projectPhaseURL;
+        String completeFormURL = Constant.buildURL+materialsURL;
 
         //Reading the key from config.properties file to get the form specific Excel File to upload
-        String projectPhaseExcelFile = PropertiesFile.readProperties("projectPhaseExcelFile");
+        String materialsExcelFile = PropertiesFile.readProperties("materialsExcelFile");
 
         //appending the excel file name at the end of the excel file absolute paths
-        String completeExcelFileURL =  Constant.excelSheetsFilePath +projectPhaseExcelFile;
+        String completeExcelFileURL =  Constant.excelSheetsFilePath +materialsExcelFile;
 
         //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
         MWCommon.excelSheetUpload(completeFormURL, completeExcelFileURL);
@@ -44,19 +45,19 @@ public class LibraryDataLoadForProject {
 
     @Test
     @Order(2)
-    void loadDataInScoringDept() throws InterruptedException, IOException {
+    void loadDataInAdjustments() throws InterruptedException, IOException {
 
         //Reading the key from config.properties file to get the form specific url
-        String scoringDeptURL = PropertiesFile.readProperties("scoringDeptURL");
+        String adjustmentsURL = PropertiesFile.readProperties("adjustmentsURL");
 
         //appending the build/env specific URL with the form URL
-        String completeFormURL = Constant.buildURL+scoringDeptURL;
+        String completeFormURL = Constant.buildURL+adjustmentsURL;
 
         //Reading the key from config.properties file to get the form specific Excel File to upload
-        String scoringDeptExcelFile = PropertiesFile.readProperties("scoringDeptExcelFile");
+        String adjustmentsExcelFile = PropertiesFile.readProperties("adjustmentsExcelFile");
 
         //appending the excel file name at the end of the excel file absolute paths
-        String completeExcelFileURL =  Constant.excelSheetsFilePath +scoringDeptExcelFile;
+        String completeExcelFileURL =  Constant.excelSheetsFilePath +adjustmentsExcelFile;
 
         //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
         MWCommon.excelSheetUpload(completeFormURL, completeExcelFileURL);
@@ -65,19 +66,19 @@ public class LibraryDataLoadForProject {
 
     @Test
     @Order(3)
-    void loadDataInScoringCategory() throws InterruptedException, IOException {
+    void loadDataInMeasurementsSystem() throws InterruptedException, IOException {
 
         //Reading the key from config.properties file to get the form specific url
-        String scoringCategoryURL = PropertiesFile.readProperties("scoringCategoryURL");
+        String measurementsSystemURL = PropertiesFile.readProperties("measurementsSystemURL");
 
         //appending the build/env specific URL with the form URL
-        String completeFormURL = Constant.buildURL+scoringCategoryURL;
+        String completeFormURL = Constant.buildURL+measurementsSystemURL;
 
         //Reading the key from config.properties file to get the form specific Excel File to upload
-        String scoringCategoryExcelFile = PropertiesFile.readProperties("scoringCategoryExcelFile");
+        String measurementsSystemsExcelFile = PropertiesFile.readProperties("measurementsSystemsExcelFile");
 
         //appending the excel file name at the end of the excel file absolute paths
-        String completeExcelFileURL =  Constant.excelSheetsFilePath +scoringCategoryExcelFile;
+        String completeExcelFileURL =  Constant.excelSheetsFilePath +measurementsSystemsExcelFile;
 
         //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
         MWCommon.excelSheetUpload(completeFormURL, completeExcelFileURL);
@@ -86,25 +87,31 @@ public class LibraryDataLoadForProject {
 
     @Test
     @Order(4)
-    void loadDataInScoringCriteria() throws InterruptedException, IOException {
+    void loadDataInBudgetEstimateType() throws InterruptedException, IOException {
 
-        //Reading the key from config.properties file to get the form specific url
-        String scoringCriteriaURL = PropertiesFile.readProperties("scoringCriteriaURL");
+        String stdTablesURL = PropertiesFile.readProperties("standardTablesURL");
+        String completeURL = Constant.buildURL+stdTablesURL;
 
-        //appending the build/env specific URL with the form URL
-        String completeFormURL = Constant.buildURL+scoringCriteriaURL;
+        //Method defined in MWCommon class to navigate to Standard Items and create a Table
+        MWCommon.navigateToStandardTable(completeURL);
+
+        Thread.sleep(5000);
+
+        //Method defined in MWCommon class to select the newly created Table and navigate to Standard Items for Import
+        MWCommon.navigateToStandardItems();
+
+        Thread.sleep(3000);
 
         //Reading the key from config.properties file to get the form specific Excel File to upload
-        String scoringCriteriaExcelFile = PropertiesFile.readProperties("scoringCriteriaExcelFile");
+        String standardItemsExcelFile = PropertiesFile.readProperties("standardItemsExcelFile");
 
         //appending the excel file name at the end of the excel file absolute paths
-        String completeExcelFileURL =  Constant.excelSheetsFilePath +scoringCriteriaExcelFile;
+        String completeExcelFileURL =  Constant.excelSheetsFilePath +standardItemsExcelFile;
 
         //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
-        MWCommon.excelSheetUpload(completeFormURL, completeExcelFileURL);
+        MWCommon.excelSheetUploadForStdItems(completeExcelFileURL);
 
     }
-
 
     @AfterEach
     void waitAfterEachTest() throws InterruptedException {
@@ -116,4 +123,5 @@ public class LibraryDataLoadForProject {
     static void terminate(){
         MWCommon.quit();
     }
+
 }

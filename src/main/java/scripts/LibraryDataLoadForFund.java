@@ -90,7 +90,7 @@ public class LibraryDataLoadForFund {
 
     @AfterEach
     void waitAfterEachTest() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(5000);
 
     }
 

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 
-public class LibraryDataLoadForProgram {
+public class LibraryDataLoadForBudget {
 
     @BeforeAll
     static void setup(){
@@ -21,26 +21,29 @@ public class LibraryDataLoadForProgram {
         Thread.sleep(5000);
     }
 
+
     @Test
     @Order(1)
-    void loadDataInProgramCategory() throws InterruptedException, IOException {
+    void loadDataInBudgetEstimateType() throws InterruptedException, IOException {
 
         //Reading the key from config.properties file to get the form specific url
-        String programCatrgoryURL = PropertiesFile.readProperties("programCatrgoryURL");
+        String budgetEstimateTypeURL = PropertiesFile.readProperties("budgetEstimateTypeURL");
 
         //appending the build/env specific URL with the form URL
-        String completeFormURL = Constant.buildURL+programCatrgoryURL;
+        String completeFormURL = Constant.buildURL+budgetEstimateTypeURL;
 
         //Reading the key from config.properties file to get the form specific Excel File to upload
-        String programCatrgoryExcelFile = PropertiesFile.readProperties("programCatrgoryExcelFile");
+        String budgetEstimateTypeExcelFile = PropertiesFile.readProperties("budgetEstimateTypeExcelFile");
 
         //appending the excel file name at the end of the excel file absolute paths
-        String completeExcelFileURL =  Constant.excelSheetsFilePath +programCatrgoryExcelFile;
+        String completeExcelFileURL =  Constant.excelSheetsFilePath +budgetEstimateTypeExcelFile;
 
         //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
         MWCommon.excelSheetUpload(completeFormURL, completeExcelFileURL);
 
     }
+
+
 
     @AfterEach
     void waitAfterEachTest() throws InterruptedException {
