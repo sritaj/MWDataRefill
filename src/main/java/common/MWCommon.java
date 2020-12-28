@@ -27,4 +27,8 @@ public class MWCommon {
         Thread.sleep(1000);
         driver.findElement(By.xpath("//input[@id='C1_btnSave1']")).click();
     }
+
+    public static void quit(){
+        driver.quit();
+    }
 }
