@@ -4,7 +4,7 @@ public class Constant {
 
     // ******* Absolute Path Specific Settings ******* //
     //Defining the Project Abs path for appending with other directories/folders present in the Project
-    public static String projectAbsPath = "/Users/sritaj/Downloads/LearnAtUdemy/";
+    public static String projectAbsPath = "/Users/sritaj/Desktop/";
 
     //Appending projectAbsPath and propertiesFilePath which is used in PropertiesFile class
     public static final String propertiesFilePath = projectAbsPath + "MWDataRefill/src/main/resources/config.properties";
