@@ -40,6 +40,10 @@ public class LibraryDataLoadForProgram {
         //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
         MWCommon.excelSheetUpload(completeFormURL, completeExcelFileURL);
 
+        String message = MWCommon.checkForConfirmationMsg();
+
+        Assertions.assertEquals("Records Successfully Imported!!", message);
+
     }
 
     @AfterEach
