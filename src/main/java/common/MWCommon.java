@@ -32,12 +32,32 @@ public class MWCommon {
         driver.findElement(By.id("btnLogin")).click();
     }
 
+    /*
+    public static void navigateTo(String formURL){
+        driver.get(formURL);
+        MWCommon.waitForPageLoad();
+        driver.switchTo().frame("contentFrame");
+    }
+
+    public static void uploadExcelSheet(String formExcelSheet){
+        driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).sendKeys(formExcelSheet);
+        MWCommon.waitForPageLoad();
+        driver.findElement(By.xpath("//input[@id='C1_btnUpload']")).click();
+        MWCommon.waitForPageLoad();
+        driver.findElement(By.xpath("//input[@id='C1_btnSave1']")).click();
+        driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).clear();
+    }
+
+     */
+
     //Method to upload the excel sheet by passing the relevant form url and excel sheet path
     public static void excelSheetUpload(String formURL, String formExcelSheet) throws InterruptedException {
 
         driver.get(formURL);
+        MWCommon.waitForPageLoad();
         driver.switchTo().frame("contentFrame");
         driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).sendKeys(formExcelSheet);
+        MWCommon.waitForPageLoad();
         driver.findElement(By.xpath("//input[@id='C1_btnUpload']")).click();
         MWCommon.waitForPageLoad();
         driver.findElement(By.xpath("//input[@id='C1_btnSave1']")).click();

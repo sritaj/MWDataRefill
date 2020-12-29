@@ -9,15 +9,9 @@ import java.io.IOException;
 
 public class LibraryDataLoadForProgram {
 
-    @BeforeAll
-    static void setup(){
-
-        MWCommon.loginMethod();
-
-    }
-
     @BeforeEach
-    void waitForPageLoad() throws InterruptedException {
+    void init() throws InterruptedException {
+        MWCommon.loginMethod();
         MWCommon.waitForPageLoad();
     }
 
@@ -47,15 +41,11 @@ public class LibraryDataLoadForProgram {
     }
 
     @AfterEach
-    void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
+    void tearDown(TestInfo testInfo) throws InterruptedException, IOException {
         MWCommon.waitForPageLoad();
         String testName = testInfo.getDisplayName();
         MWCommon.captureScreenshot(testName);
-
-    }
-
-    @AfterAll
-    static void terminate(){
         MWCommon.quit();
+
     }
 }

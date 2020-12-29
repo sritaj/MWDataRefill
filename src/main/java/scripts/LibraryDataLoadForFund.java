@@ -10,17 +10,10 @@ import java.io.IOException;
 
 public class LibraryDataLoadForFund {
 
-    @BeforeAll
-    static void setup(){
-
-        MWCommon.loginMethod();
-
-    }
-
     @BeforeEach
-    void waitForPageLoad() throws InterruptedException {
+    void init() throws InterruptedException {
+        MWCommon.loginMethod();
         MWCommon.waitForPageLoad();
-        //Thread.sleep(5000);
     }
 
 
@@ -102,16 +95,12 @@ public class LibraryDataLoadForFund {
     }
 
     @AfterEach
-    void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
+    void tearDown(TestInfo testInfo) throws InterruptedException, IOException {
         MWCommon.waitForPageLoad();
         String testName = testInfo.getDisplayName();
         MWCommon.captureScreenshot(testName);
-
-    }
-
-    @AfterAll
-    static void terminate(){
         MWCommon.quit();
+
     }
 
 
