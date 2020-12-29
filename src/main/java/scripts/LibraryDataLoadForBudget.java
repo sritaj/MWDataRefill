@@ -21,7 +21,7 @@ public class LibraryDataLoadForBudget {
 
     @BeforeEach
     void waitForPageLoad() throws InterruptedException {
-        Thread.sleep(5000);
+        MWCommon.waitForPageLoad();
     }
 
 
@@ -49,7 +49,7 @@ public class LibraryDataLoadForBudget {
 
     @AfterEach
     void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
-        Thread.sleep(5000);
+        MWCommon.waitForPageLoad();
         String testName = testInfo.getDisplayName();
         MWCommon.captureScreenshot(testName);
 

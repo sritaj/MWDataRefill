@@ -19,7 +19,8 @@ public class LibraryDataLoadForFund {
 
     @BeforeEach
     void waitForPageLoad() throws InterruptedException {
-        Thread.sleep(5000);
+        MWCommon.waitForPageLoad();
+        //Thread.sleep(5000);
     }
 
 
@@ -92,18 +93,16 @@ public class LibraryDataLoadForFund {
 
     @AfterEach
     void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
-        Thread.sleep(5000);
+        MWCommon.waitForPageLoad();
         String testName = testInfo.getDisplayName();
         MWCommon.captureScreenshot(testName);
 
     }
 
-    /*
     @AfterAll
     static void terminate(){
         MWCommon.quit();
     }
 
-     */
 
 }

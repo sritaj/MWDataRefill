@@ -18,7 +18,7 @@ public class LibraryDataLoadForContract {
 
     @BeforeEach
     void waitForPageLoad() throws InterruptedException {
-        Thread.sleep(5000);
+        MWCommon.waitForPageLoad();
     }
 
     @Test
@@ -87,7 +87,7 @@ public class LibraryDataLoadForContract {
 
     @AfterEach
     void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
-        Thread.sleep(5000);
+        MWCommon.waitForPageLoad();
         String testName = testInfo.getDisplayName();
         MWCommon.captureScreenshot(testName);
 
