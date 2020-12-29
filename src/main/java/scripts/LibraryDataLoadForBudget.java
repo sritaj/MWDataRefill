@@ -6,8 +6,11 @@ import common.PropertiesFile;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
+
 
 public class LibraryDataLoadForBudget {
+
 
     @BeforeAll
     static void setup(){
@@ -44,10 +47,11 @@ public class LibraryDataLoadForBudget {
     }
 
 
-
     @AfterEach
-    void waitAfterEachTest() throws InterruptedException {
+    void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
         Thread.sleep(5000);
+        String testName = testInfo.getDisplayName();
+        MWCommon.captureScreenshot(testName);
 
     }
 

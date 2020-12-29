@@ -24,6 +24,7 @@ public class LibraryDataLoadForFund {
 
 
     @Test
+    @Disabled
     @Order(1)
     void loadDataInFundAgency() throws InterruptedException, IOException {
 
@@ -46,7 +47,7 @@ public class LibraryDataLoadForFund {
 
     @Test
     @Order(2)
-    void loadDataInScoringDept() throws InterruptedException, IOException {
+    void loadDataInFundCategories() throws InterruptedException, IOException {
 
         //Reading the key from config.properties file to get the form specific url
         String fundCategoriesURL = PropertiesFile.readProperties("fundCategoriesURL");
@@ -67,6 +68,7 @@ public class LibraryDataLoadForFund {
     }
 
     @Test
+    @Disabled
     @Order(3)
     void loadDataInFundType() throws InterruptedException, IOException {
 
@@ -89,14 +91,19 @@ public class LibraryDataLoadForFund {
     }
 
     @AfterEach
-    void waitAfterEachTest() throws InterruptedException {
+    void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
         Thread.sleep(5000);
+        String testName = testInfo.getDisplayName();
+        MWCommon.captureScreenshot(testName);
 
     }
 
+    /*
     @AfterAll
     static void terminate(){
         MWCommon.quit();
     }
+
+     */
 
 }

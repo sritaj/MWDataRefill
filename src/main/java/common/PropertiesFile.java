@@ -7,6 +7,7 @@ import java.util.Properties;
 
 public class PropertiesFile {
 
+    //Method to read key value from Properties file
     public static String readProperties(String key) throws IOException {
 
         FileReader reader= null;

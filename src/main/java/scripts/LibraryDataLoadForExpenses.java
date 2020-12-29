@@ -65,8 +65,10 @@ public class LibraryDataLoadForExpenses {
     }
 
     @AfterEach
-    void waitAfterEachTest() throws InterruptedException {
+    void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
         Thread.sleep(5000);
+        String testName = testInfo.getDisplayName();
+        MWCommon.captureScreenshot(testName);
 
     }
 
