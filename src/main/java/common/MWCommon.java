@@ -60,9 +60,9 @@ public class MWCommon {
     }
 
     public static void navigateToBudgetTemplate(String formURL) throws InterruptedException {
+        //driver.get(formURL);
         driver.get(formURL);
-        driver.get(formURL);
-
+        //driver.get(formURL);
         driver.switchTo().frame("contentFrame");
         driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
         driver.findElement(By.xpath("//input[@id='BDGTEMP_BudgetTemplateName_Id']")).sendKeys("Engineers Estimate");

@@ -12,4 +12,9 @@ public class testClass {
         MWCommon.navigateToBudgetTemplate("https://accqa.aurigoessentials.com/Default.aspx#/Common/BrixListPage.aspx?xcontext=BDGTEMP&module=LIBRARY&PID=0&parentid=0");
         MWCommon.navigateToItems();
     }
+
+
+    public static void add(){
+
+    }
 }

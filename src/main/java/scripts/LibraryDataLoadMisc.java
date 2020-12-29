@@ -43,6 +43,7 @@ public class LibraryDataLoadMisc {
 
     }
 
+
     @Test
     @Order(2)
     void loadDataInAdjustments() throws InterruptedException, IOException {
@@ -87,7 +88,7 @@ public class LibraryDataLoadMisc {
 
     @Test
     @Order(4)
-    void loadDataInBudgetEstimateType() throws InterruptedException, IOException {
+    void loadDataInStandardItems() throws InterruptedException, IOException {
 
         String stdTablesURL = PropertiesFile.readProperties("standardTablesURL");
         String completeURL = Constant.buildURL+stdTablesURL;
@@ -107,6 +108,36 @@ public class LibraryDataLoadMisc {
 
         //appending the excel file name at the end of the excel file absolute paths
         String completeExcelFileURL =  Constant.excelSheetsFilePath +standardItemsExcelFile;
+
+        //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
+        MWCommon.excelSheetUploadForStdItems(completeExcelFileURL);
+
+    }
+
+
+    @Test
+    @Order(5)
+    void loadDataInBudgetItems() throws InterruptedException, IOException {
+
+
+        String budgetEstimateURL = PropertiesFile.readProperties("budgetEstimateURL");
+        String completeURL = Constant.buildURL+budgetEstimateURL;
+
+        //Method defined in MWCommon class to navigate to Standard Items and create a Table
+        MWCommon.navigateToBudgetTemplate(completeURL);
+
+        Thread.sleep(5000);
+
+        //Method defined in MWCommon class to select the newly created Table and navigate to Standard Items for Import
+        MWCommon.navigateToItems();
+
+        Thread.sleep(3000);
+
+        //Reading the key from config.properties file to get the form specific Excel File to upload
+        String budgetEstimateItemsExcelFile = PropertiesFile.readProperties("budgetEstimateItemsExcelFile");
+
+        //appending the excel file name at the end of the excel file absolute paths
+        String completeExcelFileURL =  Constant.excelSheetsFilePath +budgetEstimateItemsExcelFile;
 
         //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
         MWCommon.excelSheetUploadForStdItems(completeExcelFileURL);
