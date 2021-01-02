@@ -32,15 +32,36 @@ public class MWCommon {
         driver.findElement(By.id("btnLogin")).click();
     }
 
+    /*
+    public static void navigateTo(String formURL){
+        driver.get(formURL);
+        MWCommon.waitForPageLoad();
+        driver.switchTo().frame("contentFrame");
+    }
+
+    public static void uploadExcelSheet(String formExcelSheet){
+        driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).sendKeys(formExcelSheet);
+        MWCommon.waitForPageLoad();
+        driver.findElement(By.xpath("//input[@id='C1_btnUpload']")).click();
+        MWCommon.waitForPageLoad();
+        driver.findElement(By.xpath("//input[@id='C1_btnSave1']")).click();
+        driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).clear();
+    }
+
+     */
+
     //Method to upload the excel sheet by passing the relevant form url and excel sheet path
     public static void excelSheetUpload(String formURL, String formExcelSheet) throws InterruptedException {
 
         driver.get(formURL);
+        MWCommon.waitForPageLoad();
         driver.switchTo().frame("contentFrame");
         driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).sendKeys(formExcelSheet);
+        MWCommon.waitForPageLoad();
         driver.findElement(By.xpath("//input[@id='C1_btnUpload']")).click();
         MWCommon.waitForPageLoad();
         driver.findElement(By.xpath("//input[@id='C1_btnSave1']")).click();
+        driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).clear();
     }
 
     //Method to quit the browser
@@ -124,8 +145,18 @@ public class MWCommon {
 
     }
 
+    // Added method for Implicit Wait
     public static  void waitForPageLoad(){
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    // Added method to capture the message after file upload and save, to cross check with Assertions to mark it as PASS/FAIL
+    public static String checkForConfirmationMsg(){
+
+        String confirmationMessage = driver.findElement(By.xpath("//span[@id='C1_lblError']")).getText();
+
+        return confirmationMessage;
+
     }
 
 }

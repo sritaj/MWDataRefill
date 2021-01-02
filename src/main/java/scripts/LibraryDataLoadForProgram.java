@@ -9,15 +9,9 @@ import java.io.IOException;
 
 public class LibraryDataLoadForProgram {
 
-    @BeforeAll
-    static void setup(){
-
-        MWCommon.loginMethod();
-
-    }
-
     @BeforeEach
-    void waitForPageLoad() throws InterruptedException {
+    void init() throws InterruptedException {
+        MWCommon.loginMethod();
         MWCommon.waitForPageLoad();
     }
 
@@ -40,18 +34,18 @@ public class LibraryDataLoadForProgram {
         //common method defined in the MWCommon class to redirect to particular form Upload page and perform operations
         MWCommon.excelSheetUpload(completeFormURL, completeExcelFileURL);
 
+        String message = MWCommon.checkForConfirmationMsg();
+
+        Assertions.assertEquals("Records Successfully Imported!!", message);
+
     }
 
     @AfterEach
-    void waitAfterEachTest(TestInfo testInfo) throws InterruptedException, IOException {
+    void tearDown(TestInfo testInfo) throws InterruptedException, IOException {
         MWCommon.waitForPageLoad();
         String testName = testInfo.getDisplayName();
         MWCommon.captureScreenshot(testName);
-
-    }
-
-    @AfterAll
-    static void terminate(){
         MWCommon.quit();
+
     }
 }
