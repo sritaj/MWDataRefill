@@ -2,18 +2,14 @@ package common;
 
 public class Constant {
 
-    // ******* Absolute Path Specific Settings ******* //
-    //Defining the Project Abs path for appending with other directories/folders present in the Project
-    public static String projectAbsPath = "/Users/sritaj/Desktop/";
+    //Defining the path for PropertiesFile class
+    public static final String propertiesFilePath = System.getProperty("user.dir") + "//src/main/resources/config.properties";
 
-    //Appending projectAbsPath and propertiesFilePath which is used in PropertiesFile class
-    public static final String propertiesFilePath = projectAbsPath + "MWDataRefill/src/main/resources/config.properties";
+    //Defining the path for for the excel File Locations
+    public static final String excelSheetsFilePath = System.getProperty("user.dir") + "//src/main/resources/data-sheets/";
 
-    //Appending the projectAbsPath to create the Abs path for the excel File Locations
-    public static final String excelSheetsFilePath = projectAbsPath + "MWDataRefill/src/main/resources/data-sheets/";
-
-    //Appending projectAbsPath and browserPath
-    public static final String browserDriver = projectAbsPath + "MWDataRefill/src/main/resources/browsers-dependency/chromedriver";
+    //Defining the path for browserPath
+    public static final String browserDriver = System.getProperty("user.dir") + "//src/main/resources/browsers-dependency/chromedriver";
 
     // ******* Browser specific parameters ******* //
     public static final String chromeSetting = "webdriver.chrome.driver";
