@@ -7,7 +7,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.Test;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 
@@ -20,6 +19,10 @@ import java.util.Date;
 public class testClass {
 
     public static void main(String[] args) throws IOException, InterruptedException {
+
+        System.setProperty(Constant.chromeSetting, Constant.browserDriver);
+        WebDriver driver = new ChromeDriver();
+        driver.get(Constant.buildURL);
 
     }
 

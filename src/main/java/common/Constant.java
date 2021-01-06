@@ -9,7 +9,7 @@ public class Constant {
     public static final String excelSheetsFilePath = System.getProperty("user.dir") + "//src/main/resources/data-sheets/";
 
     //Defining the path for browserPath
-    public static final String browserDriver = System.getProperty("user.dir") + "//src/main/resources/browsers-dependency/chromedriver";
+    public static final String browserDriver = System.getProperty("user.dir") + "//src/main/resources/browsers-dependency/windows_drivers/chromedriver_v87/chromedriver.exe";
 
     // ******* Browser specific parameters ******* //
     public static final String chromeSetting = "webdriver.chrome.driver";

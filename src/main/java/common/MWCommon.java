@@ -1,10 +1,7 @@
 package common;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.yandex.qatools.ashot.AShot;
@@ -15,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MWCommon {
@@ -26,29 +24,48 @@ public class MWCommon {
 
         System.setProperty(Constant.chromeSetting, Constant.browserDriver);
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.get(Constant.buildURL);
         driver.findElement(By.id("txtUserID")).sendKeys(Constant.username);
         driver.findElement(By.id("password")).sendKeys(Constant.password);
         driver.findElement(By.id("btnLogin")).click();
     }
 
-    /*
-    public static void navigateTo(String formURL){
+    public static boolean createTemplateProject(String formURL, String projectName, String projectCode, String owner){
+
         driver.get(formURL);
         MWCommon.waitForPageLoad();
         driver.switchTo().frame("contentFrame");
-    }
-
-    public static void uploadExcelSheet(String formExcelSheet){
-        driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).sendKeys(formExcelSheet);
         MWCommon.waitForPageLoad();
-        driver.findElement(By.xpath("//input[@id='C1_btnUpload']")).click();
+        driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
         MWCommon.waitForPageLoad();
-        driver.findElement(By.xpath("//input[@id='C1_btnSave1']")).click();
-        driver.findElement(By.xpath("//input[@id='C1_FileUpload1']")).clear();
-    }
+        driver.findElement(By.xpath("//textarea[@id='C1_ERP_CC_BODY_txtProjectName']")).sendKeys(projectName);
+        driver.findElement(By.xpath("//input[@id='C1_ERP_CC_BODY_txtProjectCode']")).sendKeys(projectCode);
+        driver.findElement(By.xpath("//input[@id='C1_ERP_CC_BODY_txtProjectOwner']")).sendKeys(owner);
 
-     */
+        Select programCategoryDropdown = new Select(driver.findElement(By.xpath("//select[@id='C1_ERP_CC_BODY_ddlProjectClass']")));
+        try{
+            programCategoryDropdown.selectByValue("1");
+        }catch(Exception e){
+           e.printStackTrace();
+        }
+
+        WebElement businessUnit = driver.findElement(By.xpath("//tbody/tr[@id='C1_ERP_CC_BODY_trBusinessUnit']/td[2]/div[1]/span[1]/span[2]"));
+        businessUnit.click();
+        driver.findElement(By.xpath("//span[contains(text(),'Default')]")).click();
+
+        driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
+
+        WebElement element = driver.findElement(By.xpath("//span[@id='lnkEdit']"));
+
+        Boolean output = false;
+        if (element.isDisplayed()){
+            output = true;
+        }
+
+        return output;
+
+    }
 
     //Method to upload the excel sheet by passing the relevant form url and excel sheet path
     public static void excelSheetUpload(String formURL, String formExcelSheet) throws InterruptedException {
@@ -74,8 +91,15 @@ public class MWCommon {
         driver.get(formURL);
         driver.switchTo().frame("contentFrame");
         driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
-        driver.findElement(By.xpath("//input[@id='C1_txtStandardTable']")).sendKeys("Standard Items");
         MWCommon.waitForPageLoad();
+        driver.findElement(By.xpath("//input[@id='C1_txtStandardTable']")).sendKeys("Standard Items");
+
+        Select measurementSystemDropdown = new Select(driver.findElement(By.xpath("//select[@id='C1_ddl_meassys']")));
+        try{
+            measurementSystemDropdown.selectByValue("1");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
     }
 
@@ -108,8 +132,13 @@ public class MWCommon {
         driver.findElement(By.xpath("//input[@id='BDGTEMP_BudgetTemplateName_Id']")).sendKeys("Engineers Estimate");
         driver.findElement(By.xpath("//textarea[@id='BDGTEMP_Description_Id']")).sendKeys("Engineers Estimate");
 
-        Select drp = new Select(driver.findElement(By.xpath("//select[@id='BDGTEMP_MSystem_Id']")));
-        drp.selectByValue("1");
+        try{
+            Select measurementSystemDropdown = new Select(driver.findElement(By.xpath("//select[@id='BDGTEMP_MSystem_Id']")));
+            measurementSystemDropdown.selectByValue("1");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
 
         MWCommon.waitForPageLoad();
 
