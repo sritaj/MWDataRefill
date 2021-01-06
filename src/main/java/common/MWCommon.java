@@ -31,9 +31,8 @@ public class MWCommon {
         driver.findElement(By.id("btnLogin")).click();
     }
 
-    public static void createTemplateProject(String formURL, String projectName, String projectCode, String owner){
+    public static boolean createTemplateProject(String formURL, String projectName, String projectCode, String owner){
 
-       // driver.get("https://accqa.aurigoessentials.com/Default.aspx#/Common/BrixListPage.aspx?Context=PROJECT&PP=1&nt=1");
         driver.get(formURL);
         MWCommon.waitForPageLoad();
         driver.switchTo().frame("contentFrame");
@@ -57,8 +56,14 @@ public class MWCommon {
 
         driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
 
+        WebElement element = driver.findElement(By.xpath("//span[@id='lnkEdit']"));
 
+        Boolean output = false;
+        if (element.isDisplayed()){
+            output = true;
+        }
 
+        return output;
 
     }
 
