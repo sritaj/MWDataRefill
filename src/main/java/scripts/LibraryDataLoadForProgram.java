@@ -20,13 +20,13 @@ public class LibraryDataLoadForProgram {
     void loadDataInProgramCategory() throws InterruptedException, IOException {
 
         //Reading the key from config.properties file to get the form specific url
-        String programCatrgoryURL = PropertiesFile.readProperties("programCatrgoryURL");
+        String programCatrgoryURL = PropertiesFile.readProperties("programCategoryURL");
 
         //appending the build/env specific URL with the form URL
         String completeFormURL = Constant.buildURL+programCatrgoryURL;
 
         //Reading the key from config.properties file to get the form specific Excel File to upload
-        String programCatrgoryExcelFile = PropertiesFile.readProperties("programCatrgoryExcelFile");
+        String programCatrgoryExcelFile = PropertiesFile.readProperties("programCategoryExcelFile");
 
         //appending the excel file name at the end of the excel file absolute paths
         String completeExcelFileURL =  Constant.excelSheetsFilePath +programCatrgoryExcelFile;

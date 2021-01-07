@@ -23,7 +23,7 @@ public class TemplateProjectCreation {
 
         String createProjectCompleteURL = Constant.buildURL + PropertiesFile.readProperties("newPlanningPageURL");
 
-        Boolean output = MWCommon.createTemplateProject(createProjectCompleteURL, "SP2", "SP2", "Aurigo");
+        Boolean output = MWCommon.createTemplateProject(createProjectCompleteURL, "SP3", "SP3", "Aurigo");
 
         if(output = true){
             Assertions.assertTrue(true);
