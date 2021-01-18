@@ -4,6 +4,7 @@ import common.Constant;
 import common.MWCommon;
 import common.PropertiesFile;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
@@ -34,7 +35,8 @@ public class TemplateProjectCreation {
     }
 
     @AfterEach
-    void tearDown(TestInfo testInfo) throws InterruptedException, IOException {
+    void tearDown(TestInfo testInfo, ExtensionContext extensionContext) throws InterruptedException, IOException {
+
         MWCommon.waitForPageLoad();
         String testName = testInfo.getDisplayName();
         MWCommon.captureScreenshot(testName);
