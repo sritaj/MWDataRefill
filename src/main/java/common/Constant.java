@@ -18,8 +18,8 @@ public class Constant {
     //Build URL
     public static String buildURL = "https://accqa.aurigoessentials.com/#/";
 
-    public static String username = "sritaj";
+    public static String username = "Administrator";
 
-    public static String password = "Aurigo@123";
+    public static String password = "Mstwkadm1n@2019";
 
 }
