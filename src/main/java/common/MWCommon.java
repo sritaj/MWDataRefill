@@ -31,7 +31,7 @@ public class MWCommon {
         driver.findElement(By.id("btnLogin")).click();
     }
 
-    public static boolean createTemplateProject(String formURL, String projectName, String projectCode, String owner){
+    public static boolean createTemplateProject(String formURL, String projectName, String projectCode, String owner) throws InterruptedException {
 
         driver.get(formURL);
         MWCommon.waitForPageLoad();
@@ -50,16 +50,18 @@ public class MWCommon {
            e.printStackTrace();
         }
 
+        Thread.sleep(1000);
         WebElement businessUnit = driver.findElement(By.xpath("//tbody/tr[@id='C1_ERP_CC_BODY_trBusinessUnit']/td[2]/div[1]/span[1]/span[2]"));
         businessUnit.click();
         driver.findElement(By.xpath("//span[contains(text(),'Default')]")).click();
 
         driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
 
-        WebElement element = driver.findElement(By.xpath("//span[@id='lnkEdit']"));
+        MWCommon.waitForPageLoad();
+        String element = driver.findElement(By.xpath("//input[@id='C1_ERP_CC_BODY_txtProjName']")).getText();
 
         Boolean output = false;
-        if (element.isDisplayed()){
+        if (element==projectName){
             output = true;
         }
 

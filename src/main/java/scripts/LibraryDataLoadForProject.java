@@ -61,7 +61,11 @@ public class LibraryDataLoadForProject {
 
         String message = MWCommon.checkForConfirmationMsg();
 
-        Assertions.assertEquals("Records Successfully Imported!!", message);
+        if(message.contains("Imported successfully!")){
+            Assertions.assertTrue(true);
+        }else{
+            Assertions.assertTrue(false);
+        }
 
     }
 
@@ -86,7 +90,11 @@ public class LibraryDataLoadForProject {
 
         String message = MWCommon.checkForConfirmationMsg();
 
-        Assertions.assertEquals("Records Successfully Imported!!", message);
+        if(message.contains("Imported successfully!")){
+            Assertions.assertTrue(true);
+        }else{
+            Assertions.assertTrue(false);
+        }
 
     }
 
@@ -111,7 +119,11 @@ public class LibraryDataLoadForProject {
 
         String message = MWCommon.checkForConfirmationMsg();
 
-        Assertions.assertEquals("Records Successfully Imported!!", message);
+        if(message.contains("Imported successfully!")){
+            Assertions.assertTrue(true);
+        }else{
+            Assertions.assertTrue(false);
+        }
 
     }
 
