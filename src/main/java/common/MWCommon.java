@@ -31,7 +31,7 @@ public class MWCommon {
         driver.findElement(By.id("btnLogin")).click();
     }
 
-    public static boolean createTemplateProject(String formURL, String projectName, String projectCode, String owner){
+    public static boolean createTemplateProject(String formURL, String projectName, String projectCode, String owner) throws InterruptedException {
 
         driver.get(formURL);
         MWCommon.waitForPageLoad();
@@ -50,16 +50,18 @@ public class MWCommon {
            e.printStackTrace();
         }
 
+        Thread.sleep(1000);
         WebElement businessUnit = driver.findElement(By.xpath("//tbody/tr[@id='C1_ERP_CC_BODY_trBusinessUnit']/td[2]/div[1]/span[1]/span[2]"));
         businessUnit.click();
         driver.findElement(By.xpath("//span[contains(text(),'Default')]")).click();
 
         driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
 
-        WebElement element = driver.findElement(By.xpath("//span[@id='lnkEdit']"));
+        MWCommon.waitForPageLoad();
+        String element = driver.findElement(By.xpath("//input[@id='C1_ERP_CC_BODY_txtProjName']")).getText();
 
         Boolean output = false;
-        if (element.isDisplayed()){
+        if (element==projectName){
             output = true;
         }
 
@@ -90,7 +92,7 @@ public class MWCommon {
     public static void navigateToStandardTable(String formURL) throws InterruptedException {
         driver.get(formURL);
         driver.switchTo().frame("contentFrame");
-        driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
+        driver.findElement(By.xpath("//span[@id='lnkNew']")).click();
         MWCommon.waitForPageLoad();
         driver.findElement(By.xpath("//input[@id='C1_txtStandardTable']")).sendKeys("Standard Items");
 
@@ -100,12 +102,12 @@ public class MWCommon {
         }catch(Exception e){
             e.printStackTrace();
         }
-        driver.findElement(By.xpath("//body/form[@id='form1']/div[@id='centerContent']/div[@id='toolBarAndTabContent']/div[@id='MainToolBar_upToolbar']/div[@id='ctl00_MainToolBar_RadRibbonBarControl']/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/span[1]/img[1]")).click();
+        driver.findElement(By.xpath("//span[contains(text(),'Save')]")).click();
     }
 
     //Method to navigate to standard items after executing the navigateToStandardTable method
     public static void navigateToStandardItems() throws InterruptedException {
-        driver.findElement(By.xpath("/html[1]/body[1]/form[1]/div[5]/div[3]/span[2]/div[1]/div[2]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/input[1]")).click();
+        driver.findElement(By.xpath("//input[@id='ctl00_C1_MWGrid_ctl00_ctl04_MultiSelectCheckBox']")).click();
         driver.findElement(By.xpath("//span[contains(text(),'Standard Items')]")).click();
         MWCommon.waitForPageLoad();
         driver.findElement(By.xpath("//span[contains(text(),'Excel Import / Export')]")).click();

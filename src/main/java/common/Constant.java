@@ -16,10 +16,10 @@ public class Constant {
 
     // ******* Build Specific Settings ******* //
     //Build URL
-    public static String buildURL = "https://accqa.aurigoessentials.com/#/";
+    public static String buildURL = "https://autodeskcapitalplanning.aurigo.net/#/";
 
-    public static String username = "sritaj";
+    public static String username = "Administrator";
 
-    public static String password = "Aurigo@123";
+    public static String password = "Mstwkadm1n@2019";
 
 }
